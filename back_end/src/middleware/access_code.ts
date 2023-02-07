@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { getRandomCode, isValidPhoneNumber } from "../utils";
 import { PhoneNumber } from "../config";
+import { doc, setDoc } from "firebase/firestore";
 export const CreateNewAccessCode = async (
   req: Request,
   res: Response,
@@ -12,7 +13,7 @@ export const CreateNewAccessCode = async (
   }
   const accessCode = getRandomCode();
   try {
-    await PhoneNumber.add({
+    await setDoc(doc(PhoneNumber, phoneNumber), {
       phoneNumber: phoneNumber,
       accessCode: accessCode,
     });

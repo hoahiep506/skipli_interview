@@ -6,7 +6,9 @@
   "scripts": {
     "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/index.js\""
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+
   },
   "author": "Cyan",
   "license": "ISC",
