@@ -6,8 +6,6 @@ import githubRouter from './router/github';
 env.config();
 const app: Express = express();
 const port = process.env.PORT;
-const twilioSID = process.env.TWILIO_SID;
-const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
 
 app.use(express.json());
 app.use("/accessCode", accessCodeRouter)
