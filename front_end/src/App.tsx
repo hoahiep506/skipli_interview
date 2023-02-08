@@ -1,21 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import { MainPage, VerifyPage } from './page';
+import Layout from './layout';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<VerifyPage />} />
+          <Route path='/main' element={<MainPage />} />
+        </Route>
+        <Route path='*' element={<div>404</div>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
