@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { getRandomCode, isValidPhoneNumber } from "../utils";
 import { PhoneNumber } from "../config";
 import { doc, setDoc } from "firebase/firestore";
+
 export const CreateNewAccessCode = async (
   req: Request,
   res: Response,
@@ -17,7 +18,8 @@ export const CreateNewAccessCode = async (
       phoneNumber: phoneNumber,
       accessCode: accessCode,
     });
-    next(accessCode);
+    req.body.accessCode = accessCode;
+    next();
   } catch (err: any) {
     return res.status(500).json({ error: err.message });
   }
