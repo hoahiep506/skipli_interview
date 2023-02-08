@@ -11,3 +11,7 @@ export const getRandomCode = () => {
 export const isValidPhoneNumber = (phoneNumber: string) => {
   return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(phoneNumber)
 }
+
+export const formatPhoneNumber = (phoneNumber: string) => {
+  return phoneNumber.replace(/\s+|\+/g, '')?.trim()
+}

@@ -1,7 +1,6 @@
 import { Router } from "express";
-import {
-  CreateNewAccessCode,
-} from "../middleware/access_code";
+import { CreateNewAccessCode } from "../middleware/access_code";
+import { ValidateParameter } from "../middleware/validate";
 import {
   SendAccessCodeToSMS,
   ValidateAccessCode,
@@ -9,11 +8,12 @@ import {
 
 const accessCodeRouter = Router();
 
-accessCodeRouter.post("/createNew", CreateNewAccessCode, SendAccessCodeToSMS);
 accessCodeRouter.post(
-  "/validate",
-  ValidateAccessCode
+  "/createNew",
+  ValidateParameter,
+  CreateNewAccessCode,
+  SendAccessCodeToSMS
 );
+accessCodeRouter.post("/validate",ValidateParameter, ValidateAccessCode);
 
 export default accessCodeRouter;
-

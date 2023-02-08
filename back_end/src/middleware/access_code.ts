@@ -1,22 +1,20 @@
 import { Request, Response, NextFunction } from "express";
-import { getRandomCode, isValidPhoneNumber } from "../utils";
-import { PhoneNumber } from "../config";
-import { doc, setDoc } from "firebase/firestore";
+import { formatPhoneNumber, getRandomCode } from "../utils";
+import { User } from "../config";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 export const CreateNewAccessCode = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const phoneNumber = req.body.phoneNumber;
-  if (!isValidPhoneNumber) {
-    return res.status(400).json({ error: "Invalid phone number" });
-  }
-  const accessCode = getRandomCode();
   try {
-    await setDoc(doc(PhoneNumber, phoneNumber), {
+    const phoneNumber = req.body.phoneNumber;
+    const accessCode = getRandomCode();
+    await setDoc(doc(User, formatPhoneNumber(phoneNumber)), {
       phoneNumber: phoneNumber,
       accessCode: accessCode,
+      favoriteGithubUsers: [],
     });
     req.body.accessCode = accessCode;
     next();

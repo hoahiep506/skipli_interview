@@ -1,17 +1,21 @@
 import { Router } from "express";
+import { ValidateParameter } from "../middleware/validate";
 import {
-  searchGithubUsers,
-  findGithubUserProfile,
-  likeGithubUser,
-  getUserProfile,
+  SearchGithubUsers,
+  LikeGithubUser,
+  GetUserProfile,
 } from "../controller/github";
+import { FindGithubUserProfile } from "../middleware/github";
 
 const githubRouter = Router();
 
-githubRouter.get("/searchUser", searchGithubUsers);
-githubRouter.get("/findUser", findGithubUserProfile);
-githubRouter.get("/getUser", getUserProfile);
-githubRouter.post("/likeUser", likeGithubUser);
-
+githubRouter.get("/searchUser", SearchGithubUsers);
+githubRouter.get("/getUser", ValidateParameter, GetUserProfile);
+githubRouter.post(
+  "/likeUser",
+  ValidateParameter,
+  FindGithubUserProfile,
+  LikeGithubUser
+);
 
 export default githubRouter;

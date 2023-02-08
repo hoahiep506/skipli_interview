@@ -13,6 +13,6 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-export const PhoneNumber = collection(db, "PhoneNumber");
+export const User = collection(db, "User");
 
 
