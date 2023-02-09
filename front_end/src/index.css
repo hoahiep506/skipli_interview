@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply bg-violet-500 hover:bg-violet-900 focus:outline-none active:bg-violet-700 px-5 py-2 text-sm leading-5 rounded font-semibold text-white;
+  }
+  .input-text {
+    @apply px-2 py-2 bg-white text-black border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded sm:text-sm focus:ring-1 contrast-more:border-slate-400;
+  }
+  .input-text-label {
+    @apply block text-white font-medium mb-1;
+  }
+  .input-text-error {
+    @apply text-red-400 text-sm absolute right-0 -bottom-5;
+  }
+  .center {
+    @apply flex justify-center items-center;
+  }
+  .nav-bar {
+    @apply sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 bg-violet-700 py-2 px-3;
+  }
+  .bottom-bar {
+    @apply sticky bottom-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 bg-violet-700 py-2 px-3;
+  }
+} ;
