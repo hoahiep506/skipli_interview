@@ -1,7 +1,7 @@
-export interface InputTextProps {
-  label?: string;
-  placeholder?: string;
-  value?: string;
+import { ChangeEventHandler } from 'react';
+
+export interface InputTextProps extends React.HTMLAttributes<HTMLInputElement> {
   containerClassName?: string;
-  onChange?: (value: string) => void;
+  label?: string;
+  name?: string;
 }

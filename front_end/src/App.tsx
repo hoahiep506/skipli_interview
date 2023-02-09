@@ -2,14 +2,15 @@ import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { MainPage, VerifyPage } from './page';
 import Layout from './layout';
+import { ROUTER } from 'constant';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path={ROUTER.VERIFY} element={<Layout />}>
           <Route index element={<VerifyPage />} />
-          <Route path='/main' element={<MainPage />} />
+          <Route path={ROUTER.MAIN} element={<MainPage />} />
         </Route>
         <Route path='*' element={<div>404</div>} />
       </Routes>

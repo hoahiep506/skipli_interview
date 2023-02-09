@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
-import env from "dotenv";
-import { formatPhoneNumber, isValidPhoneNumber } from "../utils";
-import { User } from "../config";
-import { doc, getDoc } from "firebase/firestore";
+import { Request, Response } from 'express';
+import env from 'dotenv';
+import { formatPhoneNumber, isValidPhoneNumber } from '../utils';
+import { User } from '../config';
+import { doc, getDoc } from 'firebase/firestore';
 
-const { Vonage } = require("@vonage/server-sdk");
+const { Vonage } = require('@vonage/server-sdk');
 env.config();
 const vonage = new Vonage({
   apiKey: process.env.VONAGE_KEY,
@@ -17,13 +17,11 @@ export const SendAccessCodeToSMS = (req: Request, res: Response) => {
   vonage.sms
     .send({
       to: phoneNumber,
-      from: "Skipli Interview",
+      from: 'Skipli Interview',
       text: `Your access code is: ${accessCode}`,
     })
     .then(() => {
-      return res
-        .status(200)
-        .json({ message: "Access code sent to phone number successfully." });
+      return res.status(200).json({ message: 'Access code has been sent' });
     })
     .catch((err: any) => {
       return res.status(500).json({ error: err.message });
@@ -37,15 +35,15 @@ export const ValidateAccessCode = async (req: Request, res: Response) => {
     const userData = await getDoc(doc(User, formatPhoneNumber(phoneNumber)));
     const phoneNumberAccessCode = userData.data()?.accessCode;
     if (!userData.exists()) {
-      return res.status(404).json({ error: "Phone number not found" });
+      return res.status(404).json({ error: 'Phone number not found' });
     }
     if (accessCodeRequest === phoneNumberAccessCode) {
       return res
         .status(200)
-        .json({ message: "Access code is valid", phoneNumber: phoneNumber });
+        .json({ message: 'Verify Success', phoneNumber: phoneNumber });
     }
     if (accessCodeRequest !== phoneNumberAccessCode) {
-      return res.status(400).json({ error: "Access code is invalid" });
+      return res.status(400).json({ error: 'Access code is invalid' });
     }
   } catch (err: any) {
     return res.status(500).json({ error: err.message });

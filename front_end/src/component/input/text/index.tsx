@@ -1,16 +1,41 @@
 import { memo, useMemo } from 'react';
 import { InputTextProps } from './type';
+import { ErrorMessage, Field, FieldProps } from 'formik';
+import { isString } from 'ramda-adjunct';
 
-const InputText = (props: InputTextProps) => {
-  const containerClassName = useMemo(() => {
-    if (!props?.containerClassName) return 'block';
-    return `block ${props?.containerClassName}`;
-  }, [props?.containerClassName]);
+const InputText = ({
+  name,
+  containerClassName,
+  label,
+  ...rest
+}: InputTextProps) => {
+  const finalContainerClassnames = useMemo(() => {
+    if (!containerClassName) return 'block';
+    return `block relative ${containerClassName}`;
+  }, [containerClassName]);
+
+  if (isString(name))
+    return (
+      <Field name={name}>
+        {({ field, meta }: FieldProps) => {
+          return (
+            <label className={finalContainerClassnames}>
+              <span className='input-text-label'>{label}</span>
+              <input className='input-text mb-6' {...field} {...rest} />
+              {meta.touched && meta.error && (
+                <p className='input-text-error'>
+                  <ErrorMessage name={name!} />
+                </p>
+              )}
+            </label>
+          );
+        }}
+      </Field>
+    );
 
   return (
-    <label className={containerClassName}>
-      <span className='input-text-label'>{props.label}</span>
-      <input className='input-text' placeholder={props.placeholder} />
+    <label className={finalContainerClassnames}>
+      <input className='input-text' {...rest} />
     </label>
   );
 };
