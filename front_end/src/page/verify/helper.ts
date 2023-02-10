@@ -1,14 +1,14 @@
 import * as yup from 'yup';
 
 export type TValidateValues = {
+  phoneCode: string;
   phoneNumber: string;
   accessCode: string;
 };
-
-const phoneRegExp =
-  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+const phoneRegExp = /^[0-9]{9,12}$/im;
 
 export const validationSchema = yup.object().shape({
+  phoneCode: yup.string().trim().required('Required'),
   phoneNumber: yup
     .string()
     .trim()

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from 'constant/api';
+import { BASE_URL } from 'constant';
 import { swalAlert } from 'helper/alert';
 
 const callApi = axios.create({

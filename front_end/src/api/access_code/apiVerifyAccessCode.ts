@@ -1,4 +1,4 @@
-import { EXTEND_URL } from 'constant/api';
+import { EXTEND_URL } from 'constant';
 import { callApi } from 'helper';
 
 export type TVerifyAccessCodeParams = {
