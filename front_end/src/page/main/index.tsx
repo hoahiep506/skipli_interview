@@ -1,4 +1,4 @@
-import { Avatar, Button, ButtonLike, InputText } from 'component';
+import { Avatar, Button, ButtonLike, InputNumber, InputText } from 'component';
 import { insertObjectIf } from 'helper';
 import { TGithubUser, getVisiblePages, useApiSearchUser } from './helper';
 
@@ -40,7 +40,7 @@ const MainPage = () => {
           })}
         </div>
       </section>
-      <div className='bottom-bar h-[58px] flex gap-3 items-center justify-center'>
+      <div className='bottom-bar h-[58px] flex gap-3 items-center justify-center '>
         {getVisiblePages(helper.params.page, helper.total).map((page) => (
           <Button
             label={page}
@@ -50,6 +50,17 @@ const MainPage = () => {
             })}
           />
         ))}
+        {helper.total > 0 && (
+          <select
+            onChange={(e: any) => helper.onChangeSize(Number(e.target.value))}
+            defaultValue={helper.params?.perPage}
+            className='input-text w-20'
+          >
+            <option value='20'>20</option>
+            <option value='50'>50</option>
+            <option value='100'>100</option>
+          </select>
+        )}
       </div>
     </div>
   );

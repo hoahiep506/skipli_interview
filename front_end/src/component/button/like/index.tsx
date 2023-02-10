@@ -10,7 +10,6 @@ type TButtonLikeProps = {
 
 const ButtonLike = (props: TButtonLikeProps) => {
   const [isLiked, setIsLiked] = useState(false);
-
   const handleLike = useCallback(() => {
     const phoneNumber = localStorage.getItem('phoneNumber');
     if (isString(phoneNumber)) {

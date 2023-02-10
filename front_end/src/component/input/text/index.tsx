@@ -1,7 +1,12 @@
 import { memo, useMemo } from 'react';
-import { InputTextProps } from './type';
 import { ErrorMessage, Field, FieldProps } from 'formik';
 import { isString } from 'ramda-adjunct';
+
+interface InputTextProps extends React.HTMLAttributes<HTMLInputElement> {
+  containerClassName?: string;
+  label?: string;
+  name?: string;
+}
 
 const InputText = ({
   name,
