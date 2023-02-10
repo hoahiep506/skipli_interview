@@ -16,7 +16,7 @@ export const SendAccessCodeToSMS = (req: Request, res: Response) => {
   const accessCode = req.body.accessCode;
   client.messages
     .create({
-      to: phoneNumber,
+      to: '+' + formatPhoneNumber(phoneNumber),
       from: twilioPhone,
       body: `Your access code is: ${accessCode}`,
     })

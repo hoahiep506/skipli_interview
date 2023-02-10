@@ -9,9 +9,11 @@ In root project you can
     cd .\back_end\
     npm install
 
-After that make sure you have `.env` file in `.\back_end\`
-Create Twilio account at https://www.twilio.com/
-Create Firebase account at https://firebase.google.com/
+After that make sure you have `.env` file in `.\back_end\`.
+
+Create Twilio account at https://www.twilio.com/.
+
+Create Firebase account at https://firebase.google.com/.
 
     //.env config
     PORT=4000
