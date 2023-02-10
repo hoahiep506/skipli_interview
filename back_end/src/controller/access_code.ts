@@ -1,24 +1,24 @@
-import { Request, Response } from 'express';
 import env from 'dotenv';
-import { formatPhoneNumber, isValidPhoneNumber } from '../utils';
-import { User } from '../config';
+import { Request, Response } from 'express';
 import { doc, getDoc } from 'firebase/firestore';
+import { User } from '../config';
+import { formatPhoneNumber } from '../utils';
 
-const { Vonage } = require('@vonage/server-sdk');
+const accountSid = process.env.TWILIO_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
+const client = require('twilio')(accountSid, authToken);
+
 env.config();
-const vonage = new Vonage({
-  apiKey: process.env.VONAGE_KEY,
-  apiSecret: process.env.VONAGE_SECRET,
-});
 
 export const SendAccessCodeToSMS = (req: Request, res: Response) => {
   const phoneNumber = req.body.phoneNumber;
   const accessCode = req.body.accessCode;
-  vonage.sms
-    .send({
+  client.messages
+    .create({
       to: phoneNumber,
-      from: 'Skipli Interview',
-      text: `Your access code is: ${accessCode}`,
+      from: twilioPhone,
+      body: `Your access code is: ${accessCode}`,
     })
     .then(() => {
       return res.status(200).json({ message: 'Access code has been sent' });

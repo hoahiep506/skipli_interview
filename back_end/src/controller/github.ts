@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
 import axios from 'axios';
-import { User } from '../config';
+import { NextFunction, Request, Response } from 'express';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { User } from '../config';
 import { formatPhoneNumber } from '../utils';
 
 export const SearchGithubUsers = async (req: Request, res: Response) => {

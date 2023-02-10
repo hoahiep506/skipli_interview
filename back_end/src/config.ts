@@ -1,18 +1,26 @@
-import { getFirestore } from 'firebase/firestore';
+import env from 'dotenv';
 import { initializeApp } from 'firebase/app';
-import { collection } from "firebase/firestore"; 
-import 'firebase/firestore'
+import 'firebase/firestore';
+import { collection, getFirestore } from 'firebase/firestore';
+env.config();
+
+const apiKey = process.env.FIREBASE_API_KEY;
+const authDomain = process.env.FIREBASE_AUTH_DOMAIN;
+const projectId = process.env.FIREBASE_PROJECT_ID;
+const storageBucket = process.env.FIREBASE_STORAGE_BUCKET;
+const messagingSenderId = process.env.FIREBASE_MESSAGING_SENDER_ID;
+const appId = process.env.FIREBASE_APP_ID;
+const measurementId = process.env.FIREBASE_MEASUREMENT_ID;
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCtmR5nG4js0U1AjcThnkBzrRISgQp0IFo",
-  authDomain: "skiplyinterview.firebaseapp.com",
-  projectId: "skiplyinterview",
-  storageBucket: "skiplyinterview.appspot.com",
-  messagingSenderId: "45472064366",
-  appId: "1:45472064366:web:374df8517961232421577f",
-  measurementId: "G-47P6L4LZJG",
+  apiKey,
+  authDomain,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId,
+  measurementId,
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-export const User = collection(db, "User");
-
-
+export const User = collection(db, 'User');
