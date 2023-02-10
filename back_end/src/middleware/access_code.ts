@@ -9,7 +9,6 @@ export const CreateNewAccessCode = async (
   next: NextFunction
 ) => {
   try {
-    console.log(req.body);
     const phoneNumber = req.body.phoneNumber;
     const accessCode = getRandomCode();
     const userData = await getDoc(doc(User, formatPhoneNumber(phoneNumber)));

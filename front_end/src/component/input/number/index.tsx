@@ -1,20 +1,17 @@
 import { memo, useMemo } from 'react';
 
-import { ErrorMessage, Field, FieldProps } from 'formik';
-import { isString } from 'ramda-adjunct';
-
-interface InputNumberProps extends React.HTMLAttributes<HTMLInputElement> {
+type TInputNumberProps = {
   containerClassName?: string;
   label?: string;
   name?: string;
-}
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 const InputNumber = ({
   name,
   containerClassName,
   label,
   ...rest
-}: InputNumberProps) => {
+}: TInputNumberProps) => {
   const finalContainerClassnames = useMemo(() => {
     if (!containerClassName) return 'block';
     return `block relative ${containerClassName}`;

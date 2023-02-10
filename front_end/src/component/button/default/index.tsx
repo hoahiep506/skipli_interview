@@ -1,7 +1,14 @@
 import { memo, useMemo } from 'react';
-import { ButtonProps } from './type';
 
-const Button = (props: ButtonProps) => {
+export type TButtonProps = {
+  label?: string | number;
+  onClick?: () => void;
+  containerClassName?: string;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+};
+
+const Button = (props: TButtonProps) => {
   const containerClassName = useMemo(() => {
     if (!props.containerClassName) {
       return 'btn';

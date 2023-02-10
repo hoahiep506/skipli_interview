@@ -1,15 +1,24 @@
-import { Avatar, Button, ButtonLike, InputNumber, InputText } from 'component';
+import { apiGetUser } from 'api';
+import { Avatar, Button, ButtonLike, InputText, Modal } from 'component';
 import { insertObjectIf } from 'helper';
+import { isString } from 'ramda-adjunct';
+import { useEffect, useRef } from 'react';
 import { TGithubUser, getVisiblePages, useApiSearchUser } from './helper';
+import { ModalUser } from './component';
+import { useApiGetUser } from 'hook';
 
 const MainPage = () => {
   const helper = useApiSearchUser();
+  const {} = useApiGetUser();
+  const modalUserRef: any = useRef(null);
 
   return (
     <div className='w-full h-full overflow-auto relative'>
       <div className='nav-bar flex gap-3 items-center justify-end'>
         <InputText containerClassName='w-60' onChange={helper.onSearch} />
-        <Avatar size='small' />
+        <button onClick={() => modalUserRef.current.openModal()}>
+          <Avatar size='small' />
+        </button>
       </div>
       <section className='w-full min-h-screen text-white'>
         <div className='grid grid-cols-1 gap-6 p-6 lg:gap-8 lg:p-8 sm:grid-cols-2 lg:grid-cols-3'>
@@ -62,6 +71,9 @@ const MainPage = () => {
           </select>
         )}
       </div>
+      <Modal ref={modalUserRef}>
+        <ModalUser />
+      </Modal>
     </div>
   );
 };
