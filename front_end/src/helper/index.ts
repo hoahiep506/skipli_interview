@@ -1,3 +1,3 @@
 export * from './api';
-export * from './form';
 export * from './common';
+export * from './form';

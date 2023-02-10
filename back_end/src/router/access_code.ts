@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { CreateNewAccessCode } from '../middleware/access_code';
-import { ValidateParameter } from '../middleware/validate';
 import {
   SendAccessCodeToSMS,
   ValidateAccessCode,
 } from '../controller/access_code';
+import { CreateNewAccessCode } from '../middleware/access_code';
+import { ValidateParameter } from '../middleware/validate';
 
 const accessCodeRouter = Router();
 

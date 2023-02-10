@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
-import { formatPhoneNumber, getRandomCode } from '../utils';
+import { NextFunction, Request, Response } from 'express';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { User } from '../config';
-import { doc, setDoc, updateDoc, getDoc } from 'firebase/firestore';
+import { formatPhoneNumber, getRandomCode } from '../utils';
 
 export const CreateNewAccessCode = async (
   req: Request,

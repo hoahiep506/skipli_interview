@@ -1,5 +1,5 @@
-import axios from "axios";
-import { Request, Response, NextFunction } from "express";
+import axios from 'axios';
+import { NextFunction, Request, Response } from 'express';
 
 export const FindGithubUserProfile = async (
   req: Request,
@@ -11,7 +11,7 @@ export const FindGithubUserProfile = async (
       `https://api.github.com/user/${req.body.githubUserId}`
     );
     if (!response.data?.id) {
-      return res.status(404).json({ error: "Github user not found" });
+      return res.status(404).json({ error: 'Github user not found' });
     }
 
     req.body.githubUserProfile = response.data;

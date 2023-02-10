@@ -1,5 +1,5 @@
-import express, { Express } from 'express';
 import env from 'dotenv';
+import express, { Express } from 'express';
 import accessCodeRouter from './router/access_code';
 import githubRouter from './router/github';
 const cors = require('cors');

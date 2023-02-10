@@ -1,11 +1,9 @@
-import { apiGetUser } from 'api';
 import { Avatar, Button, ButtonLike, InputText, Modal } from 'component';
 import { insertObjectIf } from 'helper';
-import { isString } from 'ramda-adjunct';
-import { useEffect, useRef } from 'react';
-import { TGithubUser, getVisiblePages, useApiSearchUser } from './helper';
-import { ModalUser } from './component';
 import { useApiGetUser } from 'hook';
+import { useRef } from 'react';
+import { ModalUser } from './component';
+import { TGithubUser, getVisiblePages, useApiSearchUser } from './helper';
 
 const MainPage = () => {
   const helper = useApiSearchUser();
@@ -50,7 +48,10 @@ const MainPage = () => {
         </div>
       </section>
       <div className='bottom-bar h-[58px] flex gap-3 items-center justify-center '>
-        {getVisiblePages(helper.params.page, helper.total).map((page) => (
+        {getVisiblePages(
+          helper.params.page,
+          Math.ceil(helper.total / helper.params.perPage)
+        ).map((page) => (
           <Button
             label={page}
             onClick={() => helper.onChangePage(page)}

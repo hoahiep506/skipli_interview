@@ -1,11 +1,11 @@
-import { Button, CustomFormik, InputText } from 'component';
-import { TValidateValues, validationSchema } from './helper';
-import { Field, FormikHelpers, FormikProps } from 'formik';
-import { useCallback, useRef } from 'react';
 import { apiCreateAccessCode, apiVerifyAccessCode } from 'api';
-import { useNavigate } from 'react-router';
-import { isNull } from 'ramda-adjunct';
+import { Button, CustomFormik, InputText } from 'component';
 import { ROUTER, phoneCodes } from 'constant';
+import { Field, FormikHelpers, FormikProps } from 'formik';
+import { isNull } from 'ramda-adjunct';
+import { useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router';
+import { TValidateValues, validationSchema } from './helper';
 
 const VerifyPage = () => {
   const navigate = useNavigate();
@@ -16,14 +16,15 @@ const VerifyPage = () => {
       values: TValidateValues,
       actions: FormikHelpers<TValidateValues>
     ) => {
+      const phoneNumber = values.phoneCode + values.phoneNumber;
       const params = {
-        phoneNumber: values.phoneCode + values.phoneNumber,
+        phoneNumber,
         accessCode: values.accessCode,
       };
 
       const successCallback = () => {
         navigate(ROUTER.MAIN);
-        localStorage.setItem('phoneNumber', values.phoneNumber);
+        localStorage.setItem('phoneNumber', phoneNumber);
       };
 
       await apiVerifyAccessCode(params)
@@ -81,7 +82,7 @@ const VerifyPage = () => {
                     <option
                       value={item.phoneCode}
                       key={item.code}
-                    >{`${item.phoneCode} ${item.code}`}</option>
+                    >{`${item.code} ${item.phoneCode}`}</option>
                   );
                 })}
               </Field>

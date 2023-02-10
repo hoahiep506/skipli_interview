@@ -1,8 +1,8 @@
+import { ROUTER } from 'constant';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import { MainPage, VerifyPage } from './page';
 import Layout from './layout';
-import { ROUTER } from 'constant';
+import { MainPage, VerifyPage } from './page';
 
 function App() {
   return (

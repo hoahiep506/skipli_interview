@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { isValidPhoneNumber } from '../utils';
 
 export const ValidateParameter = async (

@@ -68,15 +68,15 @@ export const useApiSearchUser = () => {
   };
 };
 
-export const getVisiblePages = (page: number, total: number) => {
-  if (total < 7) {
-    return [1, 2, 3, 4, 5, 6].filter((item) => item <= total);
+export const getVisiblePages = (page: number, totalPages: number) => {
+  if (totalPages < 7) {
+    return [1, 2, 3, 4, 5, 6].filter((item) => item <= totalPages);
   }
-  if (page % 3 >= 0 && page > 2 && page + 2 < total) {
-    return [1, page - 1, page, page + 1, total];
+  if (page % 3 >= 0 && page > 2 && page + 2 < totalPages) {
+    return [1, page - 1, page, page + 1, totalPages];
   }
-  if (page % 5 >= 0 && page > 4 && page + 2 >= total) {
-    return [1, total - 3, total - 2, total - 1, total];
+  if (page % 5 >= 0 && page > 4 && page + 2 >= totalPages) {
+    return [1, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
   }
-  return [1, 2, 3, total - 1, total];
+  return [1, 2, 3, totalPages - 1, totalPages];
 };

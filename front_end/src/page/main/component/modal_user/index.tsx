@@ -1,8 +1,5 @@
-import { apiGetUser } from 'api';
-import { Avatar, Modal } from 'component';
-import { isString } from 'formik';
+import { Avatar } from 'component';
 import { useApiGetUser } from 'hook';
-import { useEffect } from 'react';
 
 const ModalUser = () => {
   const { data, phoneNumber } = useApiGetUser();
